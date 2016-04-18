@@ -1,12 +1,13 @@
 /*
-* Copyright (c) 2015 DottedEye Designs, Alexander Hustinx, NeoTech Software, Rolf Smit - All Rights Reserved
-* Unauthorized copying of this file, via any medium is strictly prohibited
-* Proprietary and confidential
+* Copyright (c) 2016 Remco Nijkamp and Zehna van den Berg - All Rights Reserved
 */
 
 #pragma once
 #include "RGBImage.h"
 class RGBImageStudent : public RGBImage {
+private:
+	RGB * pixels;
+
 public:
 
 	RGBImageStudent();
