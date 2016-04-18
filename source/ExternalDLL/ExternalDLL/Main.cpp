@@ -15,8 +15,8 @@ bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
 	ImageIO::debugFolder = "C:\\Zehna\\School\\Huidig blok\\Vision\\Debug";
@@ -58,10 +58,12 @@ int main(int argc, char * argv[]) {
 
 
 bool executeSteps(DLLExecution * executor) {
+	std::cout << "REMCOOOOOOOOOOOOOOOOOOOOOOOO" << std::endl;
 
 	//Execute the four Pre-processing steps
 	if (!executor->executePreProcessingStep1(false)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
+		std::cout << "REMCOOOOOOOOOOOOOOOOOOOOOOOO" << std::endl;
 		return false;
 	}
 
