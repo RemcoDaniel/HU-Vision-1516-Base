@@ -6,12 +6,15 @@
 
 #pragma once
 #include "IntensityImage.h"
+#include <memory>
 class IntensityImageStudent : public IntensityImage {
+private:
+	std::unique_ptr<Intensity[]> pixelArray;
+
 public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
 	IntensityImageStudent(const int width, const int height);
-	~IntensityImageStudent();
 
 	void set(const int width, const int height);
 	void set(const IntensityImageStudent &other);
