@@ -46,12 +46,6 @@ std::string ImageIO::getDebugFileName(std::string file){
 }
 
 
-
-
-
-
-
-
 bool ImageIO::loadImage(const std::string file, RGBImage &dst) {
 	Mat raw = imread(file, CV_LOAD_IMAGE_COLOR);   // Read the file
 
