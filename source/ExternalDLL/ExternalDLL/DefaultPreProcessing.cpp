@@ -8,7 +8,7 @@
 #include "ImageIO.h"
 #include "GrayscaleAlgorithm.h"
 #include "ImageFactory.h"
-#include "HereBeDragons.h"
+#include "Dragons.h"
 
 IntensityImage * DefaultPreProcessing::stepToIntensityImage(const RGBImage &src) const {
 	GrayscaleAlgorithm grayScaleAlgorithm;
@@ -18,37 +18,37 @@ IntensityImage * DefaultPreProcessing::stepToIntensityImage(const RGBImage &src)
 }
 
 IntensityImage * DefaultPreProcessing::stepScaleImage(const IntensityImage &src) const {
-	cv::Mat OverHillOverDale;
-	HereBeDragons::HerLoveForWhoseDearLoveIRiseAndFall(src, OverHillOverDale);
-	int ThoroughBushThoroughBrier = 200 * 200;
-	int OverParkOverPale = OverHillOverDale.cols * OverHillOverDale.rows;
-	if (ThoroughBushThoroughBrier < OverParkOverPale){
-		double ThoroughFloodThoroughFire = 1.0 / sqrt(OverParkOverPale / ThoroughBushThoroughBrier);
-		cv::resize(OverHillOverDale, OverHillOverDale, cv::Size(), ThoroughFloodThoroughFire, ThoroughFloodThoroughFire, cv::INTER_LINEAR);
+	cv::Mat matrix;
+	Dragons::makeIntensityMatrix(src, matrix);
+	int size = 200 * 200;
+	int matrixSize = matrix.cols * matrix.rows;
+	if (size < matrixSize){
+		double scale = 1.0 / sqrt(matrixSize / size);
+		cv::resize(matrix, matrix, cv::Size(), scale, scale, cv::INTER_LINEAR);
 	}
-	IntensityImage * IDoWanderEverywhere = ImageFactory::newIntensityImage();
-	HereBeDragons::NoWantOfConscienceHoldItThatICall(OverHillOverDale, *IDoWanderEverywhere);
-	return IDoWanderEverywhere;
+	IntensityImage * image = ImageFactory::newIntensityImage();
+	Dragons::makeIntensityImage(matrix, *image);
+	return image;
 }
 
-IntensityImage * DefaultPreProcessing::stepEdgeDetection(const IntensityImage &src) const {
-	cv::Mat OverHillOverDale;
-	HereBeDragons::HerLoveForWhoseDearLoveIRiseAndFall(src, OverHillOverDale);
+IntensityImage * DefaultPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
+	cv::Mat intensityMatrix;
+	Dragons::makeIntensityMatrix(image, intensityMatrix);
 	//cv::medianBlur(*image, *image, 3);
 	//cv::GaussianBlur(*image, *image, cv::Size(3, 3), 0, 0, cv::BORDER_DEFAULT);
-	cv::Mat ThoroughBushThoroughBrier = (cv::Mat_<float>(9, 9) << 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, -4, -4, -4, 1, 1, 1, 1, 1, 1, -4, -4, -4, 1, 1, 1, 1, 1, 1, -4, -4, -4, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0);
+	cv::Mat matrix = (cv::Mat_<float>(9, 9) << 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, -4, -4, -4, 1, 1, 1, 1, 1, 1, -4, -4, -4, 1, 1, 1, 1, 1, 1, -4, -4, -4, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0);
 	cv::Mat OverParkOverPale;
-	filter2D(OverHillOverDale, OverParkOverPale, CV_8U, ThoroughBushThoroughBrier, cv::Point(-1, -1), 0, cv::BORDER_DEFAULT);
-	IntensityImage * ThoroughFloodThoroughFire = ImageFactory::newIntensityImage();
-	HereBeDragons::NoWantOfConscienceHoldItThatICall(OverParkOverPale, *ThoroughFloodThoroughFire);
-	return ThoroughFloodThoroughFire;
+	filter2D(intensityMatrix, OverParkOverPale, CV_8U, matrix, cv::Point(-1, -1), 0, cv::BORDER_DEFAULT);
+	IntensityImage * intensityImage = ImageFactory::newIntensityImage();
+	Dragons::makeIntensityImage(OverParkOverPale, *intensityImage);
+	return intensityImage;
 }
 
-IntensityImage * DefaultPreProcessing::stepThresholding(const IntensityImage &src) const {
-	cv::Mat OverHillOverDale;
-	HereBeDragons::HerLoveForWhoseDearLoveIRiseAndFall(src, OverHillOverDale);
-	cv::threshold(OverHillOverDale, OverHillOverDale, 220, 255, cv::THRESH_BINARY_INV);
-	IntensityImage * ThoroughBushThoroughBrier = ImageFactory::newIntensityImage();
-	HereBeDragons::NoWantOfConscienceHoldItThatICall(OverHillOverDale, *ThoroughBushThoroughBrier);
-	return ThoroughBushThoroughBrier;
+IntensityImage * DefaultPreProcessing::stepThresholding(const IntensityImage &image) const {
+	cv::Mat matrix;
+	Dragons::makeIntensityMatrix(image, matrix);
+	cv::threshold(matrix, matrix, 220, 255, cv::THRESH_BINARY_INV);
+	IntensityImage * intensityImage = ImageFactory::newIntensityImage();
+	Dragons::makeIntensityImage(matrix, *intensityImage);
+	return intensityImage;
 }
