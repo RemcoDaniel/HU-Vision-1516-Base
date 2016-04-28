@@ -87,6 +87,9 @@
     <ClInclude Include="GrayscaleAlgorithm.h">
       <Filter>Header Files\private\disableautocomplete</Filter>
     </ClInclude>
+    <ClInclude Include="HereBeDragons.h">
+      <Filter>Header Files\private\disableautocomplete</Filter>
+    </ClInclude>
     <ClInclude Include="Localization.h">
       <Filter>Header Files\private\disableautocomplete</Filter>
     </ClInclude>
@@ -111,14 +114,8 @@
     <ClInclude Include="SonnetXVIII.h">
       <Filter>Header Files\private\disableautocomplete</Filter>
     </ClInclude>
-    <ClInclude Include="GrayscaleStudent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Dragons.h">
-      <Filter>Header Files\private\disableautocomplete</Filter>
-    </ClInclude>
-    <ClInclude Include="HereBeDragons.h">
-      <Filter>Header Files\private\disableautocomplete</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +173,9 @@
     <ClCompile Include="GrayscaleAlgorithm.cpp">
       <Filter>Source Files\private\disableautocomplete</Filter>
     </ClCompile>
+    <ClCompile Include="HereBeDragons.cpp">
+      <Filter>Source Files\private\disableautocomplete</Filter>
+    </ClCompile>
     <ClCompile Include="RGBImageStudent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -194,14 +194,8 @@
     <ClCompile Include="SonnetXVIII.cpp">
       <Filter>Source Files\private\disableautocomplete</Filter>
     </ClCompile>
-    <ClCompile Include="GrayscaleStudent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Dragons.cpp">
-      <Filter>Source Files\private\disableautocomplete</Filter>
-    </ClCompile>
-    <ClCompile Include="HereBeDragons.cpp">
-      <Filter>Source Files\private\disableautocomplete</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

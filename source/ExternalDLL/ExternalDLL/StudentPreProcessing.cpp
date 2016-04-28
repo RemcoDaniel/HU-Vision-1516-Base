@@ -1,16 +1,29 @@
 #include "StudentPreProcessing.h"
-#include "GrayscaleStudent.h"
+#include "GrayscaleAlgorithm.h"
 #include "ImageFactory.h"
+#include "HereBeDragons.h"
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	GrayscaleStudent grayScaleStudent;
+	// NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
+
+	GrayscaleAlgorithm grayScaleAlgorithm;
 	IntensityImage * intensityImage = ImageFactory::newIntensityImage();
-	grayScaleStudent.doAlgorithm(image, *intensityImage);
+	grayScaleAlgorithm.doAlgorithm(image, *intensityImage);
+
+
+
+
 	return intensityImage;
 }
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
-	/*cv::Mat OverHillOverDale;
+	return nullptr; // NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
+
+
+}
+
+IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
+	cv::Mat OverHillOverDale;
 	HereBeDragons::HerLoveForWhoseDearLoveIRiseAndFall(image, OverHillOverDale);
 	int ThoroughBushThoroughBrier = 200 * 200;
 	int OverParkOverPale = OverHillOverDale.cols * OverHillOverDale.rows;
@@ -20,8 +33,7 @@ IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &imag
 	}
 	IntensityImage * IDoWanderEverywhere = ImageFactory::newIntensityImage();
 	HereBeDragons::NoWantOfConscienceHoldItThatICall(OverHillOverDale, *IDoWanderEverywhere);
-	return IDoWanderEverywhere;*/
-	return nullptr;
+	return IDoWanderEverywhere;
 }
 
 IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
