@@ -1,0 +1,5 @@
+Afgelopen week is een tag gedaan voor de deadline van die week.
+Vandaag wou ik kijken hoe het ervoor stond en tot mn grote verbazing is de push niet goed gegaan...
+de tag is lokaal wel te vinden, maar niet goed gepushed.
+Dit dus maar alsnog gedaan.
+Excuses voor het ongemak :(
