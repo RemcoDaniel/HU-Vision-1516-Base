@@ -16,11 +16,11 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 	return intensityImage;
 }
 
-IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
-	return nullptr; // NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
+//IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
+	//return nullptr; // NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
 
 
-}
+//}
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
 	cv::Mat OverHillOverDale;

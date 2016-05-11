@@ -78,7 +78,6 @@
     <ClInclude Include="DefaultLocalization.h" />
     <ClInclude Include="DefaultPreProcessing.h" />
     <ClInclude Include="DLLExecution.h" />
-    <ClInclude Include="Dragons.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Extraction.h" />
     <ClInclude Include="Feature.h" />
@@ -110,7 +109,6 @@
     <ClCompile Include="DefaultLocalization.cpp" />
     <ClCompile Include="DefaultPreProcessing.cpp" />
     <ClCompile Include="DLLExecution.cpp" />
-    <ClCompile Include="Dragons.cpp" />
     <ClCompile Include="export.cpp" />
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="FeatureMap.cpp" />
