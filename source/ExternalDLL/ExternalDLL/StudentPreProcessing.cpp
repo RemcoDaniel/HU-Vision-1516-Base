@@ -37,6 +37,10 @@ IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &imag
 }
 
 IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
+	// maken van een kernel --> aparte methode of klasse ervoor
+	//
+
+
 	return nullptr;
 }
 
