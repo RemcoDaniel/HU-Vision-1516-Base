@@ -20,13 +20,13 @@ int main(int argc, char * argv[]) {
 
 
 	//ImageIO::debugFolder = "C:\\Zehna\\School\\Huidig blok\\Vision\\Debug";
-	ImageIO::debugFolder = "C:\\Users\Remco\Documents\GitHub\HU-Vision-1516-Base\source\ExternalDLL\Debug";
+	ImageIO::debugFolder = "C:\\Users\\Remco\\Documents\\GitHub\\HU-Vision-1516-Base\\source\\ExternalDLL\\Debug";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
 	//if (!ImageIO::loadImage("C:\\Zehna\\School\\Huidig blok\\Vision\\HU-Vision-1516-Base\\testsets\\Set A\\TestSet Images\\female-3.png", *input)) {
-	if (!ImageIO::loadImage("C:\\Users\Remco\Documents\GitHub\HU-Vision-1516-Base\testsets\Set A\TestSet Images\female-3.png", *input)) {
+	if (!ImageIO::loadImage("C:\\Users\\Remco\\Documents\\GitHub\\HU-Vision-1516-Base\\testsets\\Set A\\TestSet Images\\female-3.png", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
