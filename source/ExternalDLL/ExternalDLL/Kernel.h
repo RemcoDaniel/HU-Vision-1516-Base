@@ -2,6 +2,10 @@
 
 #define PI 3.14159265359
 #define E  2.718281828459
+#define LAPLACIAN 1
+#define PREWITT 2
+#define SOBEL 3
+#define GAUSSIAN 4
 
 class Kernel {
 public:
@@ -17,6 +21,7 @@ public:
 
 	const int getWidth() const;
 	const int getHeight() const;
+	int* getKernel();
 
 private:
 	double data[];	// beter een std array...
