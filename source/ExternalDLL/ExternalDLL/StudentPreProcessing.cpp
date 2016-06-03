@@ -18,7 +18,8 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 	// kernel over oude gooien (zonder te wijzigen)
 	//
 	IntensityImageStudent* nImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
-	Kernel kern(3,3,SOBEL,1);
+	//Kernel kern(5,5,PREWITT,1);
+	Kernel kern(3, 3, SOBEL, 1);
 	//int kernVerOff = image.getHeight() / 2;
 	//int kernHorOff = image.getWidth() / 2;
 	//std::cout << "Kernel height divided: " << kernVerOff << '\n';
