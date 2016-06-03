@@ -23,8 +23,8 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 }
 
 IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage, const IntensityImage & oldImage, Kernel kern) const{
-	int kernVerOff = oldImage.getHeight() / 2;
-	int kernHorOff = oldImage.getWidth() / 2;
+	int kernVerOff = kern.getHeight() / 2;
+	int kernHorOff = kern.getWidth() / 2;
 	std::cout << "Kernel height divided: " << kernVerOff << '\n';
 	for (int y = 0; y < oldImage.getHeight() - kernVerOff; y++){
 		while (y < kern.getHeight() / 2){
@@ -40,14 +40,15 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 			for (int yWeight = -1 * kernVerOff; yWeight < kernVerOff; yWeight++){
 				for (int xWeight = -1 * kernHorOff; xWeight < kernHorOff; xWeight++){
 					double temp = kern.getValue(value) * oldImage.getPixel(x + xWeight, y + yWeight);
+					std::cout << "kernel value: " << kern.getValue(value) << " old image pixelValue : " << oldImage.getPixel(x + xWeight, y + yWeight) << " temp result: " << temp << std::endl;
 					result += temp;
 					value++;
 				}
 			}
 			std::cout << "Result : " << result;
-			result = round(result / kern.divFactor());
-			std::cout << ", after division: " << result << '\n';
-			newImage.setPixel(x, y, result);
+			int nPixel = round(result / kern.getDivFactor());
+			std::cout << ", after division: " << nPixel << '\n';
+			newImage.setPixel(x, y, nPixel);
 			//end Actual appliance
 		}
 	}

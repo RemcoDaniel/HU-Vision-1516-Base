@@ -138,6 +138,19 @@ const int* Kernel::getKernel() const {
 	return data;
 }
 
+const int Kernel::getValue(int val) const{
+	return data[val];
+}
+
+const int Kernel::getDivFactor() const{
+	int total = 0;
+	int size = getWidth() * getHeight();
+	for (int i = 0; i < size; i++){
+		total += data[i];
+	}
+	return total;
+}
+
 void Kernel::printKernel(){
 	int size = width * height;
 	for (int i = 0; i < size; ++i) {

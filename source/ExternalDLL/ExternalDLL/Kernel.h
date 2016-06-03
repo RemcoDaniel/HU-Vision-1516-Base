@@ -24,6 +24,8 @@ public:
 	const int getWidth() const;
 	const int getHeight() const;
 	const int* getKernel() const;
+	const int getValue(int val) const;
+	const int getDivFactor() const;
 
 	void printKernel();
 
