@@ -24,33 +24,25 @@ void Kernel::fillKernel(int mode, int strength) {
 		case GAUSSIAN:	fillGaussianKernel(strength);	break;		// Gaussian
 		default:		fillNormalKernel(strength);		break;		// Normal
 	}
+	printKernel();
 }
 
 void Kernel::fillNormalKernel(int strength) {	// deze vult de kernel met waarden
-	int size = width * height;
-	//data = new int[size];
-
 	for (int i = 0; i < size; ++i){
 		data[i] = strength;
 	}
 }
 
 void Kernel::fillLaplacianKernel(int strength){
-	int size = width * height;
-	//data = new int[size];
-
-
+	// blablabla
 }
 
 void Kernel::fillPrewittKernel(int strength){
-	int size = width * height;
-	//data = new int[size];
-
 	//-1-1-1
 	// 0 0 0
 	// 1 1 1
 
-	int middenrij = height % 2;
+	int middenrij = height / 2;
 	int beginMidden = width * middenrij;
 	int eindMidden = beginMidden + width;	
 	
@@ -71,9 +63,6 @@ void Kernel::fillPrewittKernel(int strength){
 }
 
 void Kernel::fillSobelKernel(int strength){
-	int size = width * height;
-	//data = new int[size];
-
 	//-1 -2 -1
 	// 0  0  0
 	// 1  2  1
@@ -90,32 +79,38 @@ void Kernel::fillSobelKernel(int strength){
 	//  1  2  3  2  1	(1e element is eindMidden)
 	//  1  1  1  1  1	(1e element is eindNaMiddenRij)
 
-	int middenrij = height % 2;
+	int middenrij = height / 2;
 	int beginMidden = width * middenrij;
 	int voorMiddenRij = beginMidden - width;
 	int eindMidden = beginMidden + width;
 	int eindNaMiddenRij = eindMidden + width;
 
+	int tPos = 0;
+	int tNeg = 0;
 	for (int i = 0; i < size; ++i) {
 		if (i < voorMiddenRij) {
 			data[i] = -1;
 		}
 		else if (i < beginMidden) {
-			// dat rare rijtje in de minus
-			//
+			if (i < (voorMiddenRij + ((width / 2) + 1))){
+				tNeg--;
+			}
+			else tNeg++;
+			data[i] = tNeg;
 		}
 		else if (i < eindMidden) {
 			data[i] = 0;
 		}
 		else if (i < eindNaMiddenRij) {
-			// dat rare rijtje in de plus
+			if (i < (eindMidden + ((width / 2) + 1))){
+				tPos++;
+			}
+			else tPos--;
+			data[i] = tPos;
 		}
 		else data[i] = 1;
 	}
-
 	// ook deze kan weer andersom!!! (net als bij prewitt)
-
-	printKernel();
 }
 
 
@@ -152,11 +147,10 @@ const int Kernel::getDivFactor() const{
 }
 
 void Kernel::printKernel(){
-	int size = width * height;
-	for (int i = 0; i < size; ++i) {
-		std::cout << data[i] << " ";
-		if (! (i%width)) {
-			std::cout << std::endl;
+	for (int i = 0; i < size; i += width) {
+		for (int e = 0; e < width; ++e) {
+			std::cout << data[i + e] << " ";
 		}
+		std::cout << std::endl;
 	}
 }
