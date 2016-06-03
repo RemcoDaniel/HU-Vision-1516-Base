@@ -14,5 +14,6 @@ public:
 	IntensityImage * stepToIntensityImage(const RGBImage &image) const;
 	IntensityImage * stepScaleImage(const IntensityImage &image) const;
 	IntensityImage * stepEdgeDetection(const IntensityImage &image) const;
+	IntensityImage & KernelAppliance(IntensityImage & newImage, IntensityImage & oldImage, Kernel kern);
 	IntensityImage * stepThresholding(const IntensityImage &image) const;
 };
