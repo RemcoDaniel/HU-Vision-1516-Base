@@ -8,12 +8,13 @@
 #include "PreProcessing.h"
 #include "RGBImageStudent.h"
 #include "IntensityImageStudent.h"
+#include "Kernel.h"
 
 class StudentPreProcessing : public PreProcessing {
 public:
 	IntensityImage * stepToIntensityImage(const RGBImage &image) const;
 	IntensityImage * stepScaleImage(const IntensityImage &image) const;
 	IntensityImage * stepEdgeDetection(const IntensityImage &image) const;
-	IntensityImage & KernelAppliance(IntensityImage & newImage, IntensityImage & oldImage, Kernel kern);
+	IntensityImage & KernelAppliance(IntensityImage& newImage, const IntensityImage & oldImage, Kernel kern) const;
 	IntensityImage * stepThresholding(const IntensityImage &image) const;
 };
