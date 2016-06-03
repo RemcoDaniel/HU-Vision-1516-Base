@@ -93,6 +93,7 @@ void fillSobelKernel(int width, int height, int strength){
 		}
 		else if (i < beginMidden){
 			// dat rare rijtje in de minus
+			if (i)
 		}
 		else if (i < eindMidden) {
 			data[i] = 0;
@@ -104,6 +105,8 @@ void fillSobelKernel(int width, int height, int strength){
 	}
 
 	// ook deze kan weer andersom!!! (net als bij prewitt)
+
+	printKernel(data, width, height);
 }
 
 /*
@@ -119,8 +122,14 @@ int* getKernel() {
 	return data;
 }
 
-void printKernel(){
+void printKernel(int* data, int width, int height){
 	std::cout << "boe" << std::endl;
 
-	
+	int size = width * height;
+	for (int i = 0; i < size; ++i) {
+		std::cout << data[i] << " ";
+		if (!i%width) {
+			std::cout << std::endl;
+		}
+	}
 }
