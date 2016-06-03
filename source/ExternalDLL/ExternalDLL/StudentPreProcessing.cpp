@@ -5,35 +5,19 @@
 #include <math.h>
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	// NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
-
-	GrayscaleAlgorithm grayScaleAlgorithm;
-	IntensityImage * intensityImage = ImageFactory::newIntensityImage();
-	grayScaleAlgorithm.doAlgorithm(image, *intensityImage);
-
-
-
-
-	return intensityImage;
+	return nullptr;
 }
 
-//IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
-	//return nullptr; // NOTE: ALLES HIER IS NOG GEWOON GEJAT :P :P :P
-
-
-//}
-
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
-
+	return nullptr;
 }
 //Returns new Intensity image with edges
 IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
 	// maken van een kernel --> aparte methode of klasse ervoor
 	// nieuwe afbeelding maken
 	// kernel over oude gooien (zonder te wijzigen)
-
 	IntensityImageStudent nImage(image.getWidth(), image.getHeight());
-	Kernel kern(3,3,1,1);
+	Kernel kern(3,3,SOBEL,1);
 	KernelAppliance(nImage, image, kern);
 	return new IntensityImageStudent(nImage);
 }

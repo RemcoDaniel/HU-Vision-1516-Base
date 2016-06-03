@@ -19,12 +19,14 @@ int main(int argc, char * argv[]) {
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
-	ImageIO::debugFolder = "C:\\Zehna\\School\\Huidig blok\\Vision\\Debug";
+	//ImageIO::debugFolder = "C:\\Zehna\\School\\Huidig blok\\Vision\\Debug";
+	ImageIO::debugFolder = "C:\\Users\\Remco\\Documents\\GitHub\\HU-Vision-1516-Base\\source\\ExternalDLL\\Debug";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\Zehna\\School\\Huidig blok\\Vision\\HU-Vision-1516-Base\\testsets\\Set A\\TestSet Images\\female-3.png", *input)) {
+	//if (!ImageIO::loadImage("C:\\Zehna\\School\\Huidig blok\\Vision\\HU-Vision-1516-Base\\testsets\\Set A\\TestSet Images\\female-3.png", *input)) {
+	if (!ImageIO::loadImage("C:\\Users\\Remco\\Documents\\GitHub\\HU-Vision-1516-Base\\testsets\\Set A\\TestSet Images\\female-3.png", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
@@ -52,7 +54,7 @@ bool executeSteps(DLLExecution * executor) {
 	std::cout << "REMCOOOOOOOOOOOOOOOOOOOOOOOO" << std::endl;
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(true)) {
+	if (!executor->executePreProcessingStep1(false)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		std::cout << "REMCOOOOOOOOOOOOOOOOOOOOOOOO" << std::endl;
 		return false;
@@ -64,7 +66,7 @@ bool executeSteps(DLLExecution * executor) {
 	}
 	ImageIO::saveIntensityImage(*executor->resultPreProcessingStep2, ImageIO::getDebugFileName("Pre-processing-2.png"));
 
-	if (!executor->executePreProcessingStep3(false)) {
+	if (!executor->executePreProcessingStep3(true)) {
 		std::cout << "Pre-processing step 3 failed!" << std::endl;
 		return false;
 	}
