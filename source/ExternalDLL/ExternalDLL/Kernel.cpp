@@ -69,7 +69,41 @@ void fillSobelKernel(int width, int height, int strength){
 	// 0  0  0
 	// 1  2  1
 
+	// we nemen de width en dan kijken we hoe groot deze is.
+	// de rij rond de middelste rij geven we iets meer gewicht mee. (zie hierboven)
+	// bij 3 maken we de middelste waarde 2, dus 121
+	// bij 5 maken we de middelste waarde 3, dus 12321
+	// bij 7 maken we de middelste waarde 4, dus 1234321
+	// dus als de kernel groter is dan 3x3 krijg je zoiets:
+	// -1 -1 -1 -1 -1
+	// -1 -2 -3 -2 -1	(1e element is voorMiddenRij)
+	//  0  0  0  0  0	(1e element is beginMidden)
+	//  1  2  3  2  1	(1e element is eindMidden)
+	//  1  1  1  1  1	(1e element is eindNaMiddenRij)
 
+	int middenrij = height % 2;
+	int beginMidden = width * middenrij;
+	int voorMiddenRij = beginMidden - width;
+	int eindMidden = beginMidden + width;
+	int eindNaMiddenRij = eindMidden + width;
+
+	for (int i = 0; i < size; ++i) {
+		if (i < voorMiddenRij) {
+			data[i] = -1;
+		}
+		else if (i < beginMidden){
+			// dat rare rijtje in de minus
+		}
+		else if (i < eindMidden) {
+			data[i] = 0;
+		}
+		else if (i < eindNaMiddenRij) {
+			// dat rare rijtje in de plus
+		}
+		else data[i] = 1;
+	}
+
+	// ook deze kan weer andersom!!! (net als bij prewitt)
 }
 
 /*
