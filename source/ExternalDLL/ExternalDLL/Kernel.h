@@ -23,8 +23,7 @@ public:
 
 	const int getWidth() const;
 	const int getHeight() const;
-	const int getSize() const;
-	int* getKernel();
+	const int* getKernel() const;
 
 	void printKernel();
 

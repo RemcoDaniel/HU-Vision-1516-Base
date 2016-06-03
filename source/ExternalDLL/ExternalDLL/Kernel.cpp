@@ -11,6 +11,10 @@ Kernel::Kernel(int w, int h, int mode, int strength) {		// strength kan van -10 
 	}
 }
 
+Kernel::~Kernel(){
+	delete[] data;
+}
+
 void Kernel::fillKernel(int mode, int strength) {
 	data = new int[size];
 	switch (mode) {
@@ -114,22 +118,27 @@ void Kernel::fillSobelKernel(int strength){
 	printKernel();
 }
 
-/*
-void fillGaussianKernel(int width, int height, int strength){
-	int size = width * height;
-	data = new int[size];
-	for (int i = 0; i < size; ++i){
-		data[i] = <int>((1 / (2 * PI * strength ^ 2)) * E ^ ((width ^ 2 + height ^ 2) / (2 * strength ^ 2)); // strength is hier dus de deviation!! let op!: ff kijken of strength dan wel de juiste waarde heeft!  strength wil je hier eigenlijk tussen de 0.0 en de 1.0
-	}
-} */
 
-int* Kernel::getKernel() {
+void Kernel::fillGaussianKernel(int strength){
+	for (int i = 0; i < size; ++i){
+		//data[i] = <int>((1 / (2 * PI * strength ^ 2)) * E ^ ((width ^ 2 + height ^ 2) / (2 * strength ^ 2)); // strength is hier dus de deviation!! let op!: ff kijken of strength dan wel de juiste waarde heeft!  strength wil je hier eigenlijk tussen de 0.0 en de 1.0
+		data[i] = 1;
+	}
+}
+
+const int Kernel::getWidth() const {
+	return width;
+}
+
+const int Kernel::getHeight() const {
+	return height;
+}
+
+const int* Kernel::getKernel() const {
 	return data;
 }
 
 void Kernel::printKernel(){
-	std::cout << "boe" << std::endl;
-
 	int size = width * height;
 	for (int i = 0; i < size; ++i) {
 		std::cout << data[i] << " ";
