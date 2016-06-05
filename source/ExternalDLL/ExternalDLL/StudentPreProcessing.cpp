@@ -45,8 +45,8 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 			if (y >= kernVerOff && y < oldImage.getHeight() - kernVerOff){
 				if (x >= kernHorOff && x < oldImage.getWidth() - kernHorOff){
 					//Checks the kernel in all directions
-					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, true);
-					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, false);
+					result += kernelSum(kernHorOff, kernVerOff, oldImage, kern, x, y, true, true);
+					result += kernelSum(kernHorOff, kernVerOff, oldImage, kern, x, y, true, false);
 				}
 			}
 
@@ -79,7 +79,7 @@ double StudentPreProcessing::kernelSum(int kernHorOff, int kernVerOff, const Int
 		}
 	}
 	if (result < 0){ result = result * -1; }
-	result = result * 1; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended. This is solely for the Threshold.
+	result = result * 1; //Change this to change the output of each kernel. 1 for 3x3, 0.4 for 5x5 recommended. This is solely for the Threshold.
 	return result;
 }
 
