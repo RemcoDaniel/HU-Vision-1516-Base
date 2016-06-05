@@ -5,9 +5,8 @@
 #include <math.h>
 #include <time.h>
 
-/* KNOWN COMBO's (apparently don't work anymore)
-Kern(5,5,PREWITT,1) result * 0.4 : female-2,
-Kern(5,5,PREWITT,1) result * 0.4 : male-1(shirt = face though)
+/* KNOWN COMBO's
+Kern(3,3,PREWITT,2) : female-2;
 */
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
@@ -27,7 +26,7 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 	clock_t time = clock();
 
 	IntensityImageStudent nImage(image.getWidth(), image.getHeight());
-	Kernel kern(5, 5,PREWITT, 1);
+	Kernel kern(3, 3,PREWITT, 2);
 	KernelAppliance(nImage, image, kern);
 
 	time = clock() - time;
@@ -48,13 +47,7 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 					//Checks the kernel in all directions
 					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, true);
 					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, false);
-					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, true);
-					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, false);
 				}
-			}
-
-			if (kern.getDivFactor() != 0){
-				result = result / kern.getDivFactor();
 			}
 
 			int nPixel = (int)round(result);
@@ -85,8 +78,8 @@ double StudentPreProcessing::kernelSum(int kernHorOff, int kernVerOff, const Int
 			value++;
 		}
 	}
-	if (result < 0){ result = 0; }
-	result = result * 0.35; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended.
+	if (result < 0){ result = result * -1; }
+	result = result * 1; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended. This is solely for the Threshold.
 	return result;
 }
 
