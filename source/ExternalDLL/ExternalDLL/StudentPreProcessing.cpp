@@ -3,6 +3,7 @@
 #include "ImageFactory.h"
 #include "HereBeDragons.h"
 #include <math.h>
+#include <time.h>
 
 /* KNOWN COMBO's
 Kern(5,5,PREWITT,1) result * 0.4 : female-2,
@@ -21,9 +22,16 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 	// maken van een kernel --> aparte methode of klasse ervoor
 	// nieuwe afbeelding maken
 	// kernel over oude gooien (zonder te wijzigen)
+
+	//time calculation
+	clock_t time = clock();
+
 	IntensityImageStudent nImage(image.getWidth(), image.getHeight());
 	Kernel kern(5, 5,PREWITT, 1);
 	KernelAppliance(nImage, image, kern);
+
+	time = clock() - time;
+	std::cout << "The amount of time spent calculating: " << time << " milliseconds \n";
 	return new IntensityImageStudent(nImage);
 }
 
