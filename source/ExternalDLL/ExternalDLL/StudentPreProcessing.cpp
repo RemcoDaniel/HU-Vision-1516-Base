@@ -43,6 +43,7 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 			//Actual appliance
 			double result = 0;
 
+			//Checks the kernel in all directions
 			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, true);
 			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, false);
 			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, true);
@@ -53,10 +54,9 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 			}
 
 			int nPixel = (int)round(result);
-			//std::cout << "nPixel Value: " << nPixel << '\n';
 			if (nPixel < 0){ nPixel = 0; }
-			//nPixel = nPixel * 4; Addition to help threshold
 			if (nPixel > 255){ nPixel = 255; }
+
 			newImage.setPixel(x, y, nPixel);
 			//end Actual appliance
 		}
@@ -83,7 +83,7 @@ double StudentPreProcessing::kernelSum(int kernHorOff, int kernVerOff, const Int
 		}
 	}
 	if (result < 0){ result = 0; }
-	result = result * 0.4; //Change this to change the output of each kernel
+	result = result * 0.4; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended.
 	return result;
 }
 
