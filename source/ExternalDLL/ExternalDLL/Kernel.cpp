@@ -37,11 +37,7 @@ void Kernel::fillLaplacianKernel(int strength){
 	// blablabla
 }
 
-void Kernel::fillPrewittKernel(int strength){
-	//-1-1-1
-	// 0 0 0
-	// 1 1 1
-
+void Kernel::fillPrewittKernel(int strength){	// deze is momenteel alleen horizontaal!
 	int middenrij = height / 2;
 	int beginMidden = width * middenrij;
 	int eindMidden = beginMidden + width;	
@@ -55,29 +51,25 @@ void Kernel::fillPrewittKernel(int strength){
 		}
 		else data[i] = 0;
 	}
-	
-	// er is er ook nog 1 voor:
-	//-1 0 1
-	//-1 0 1
-	//-1 0 1
 }
 
-void Kernel::fillSobelKernel(int strength){
-	//-1 -2 -1
-	// 0  0  0
-	// 1  2  1
+void Kernel::fillSobelKernel(int strength){	// deze is momenteel alleen horizontaal!
+	/*
+	-1 -2 -1
+	 0  0  0
+	 1  2  1
 
-	// we nemen de width en dan kijken we hoe groot deze is.
-	// de rij rond de middelste rij geven we iets meer gewicht mee. (zie hierboven)
-	// bij 3 maken we de middelste waarde 2, dus 121
-	// bij 5 maken we de middelste waarde 3, dus 12321
-	// bij 7 maken we de middelste waarde 4, dus 1234321
-	// dus als de kernel groter is dan 3x3 krijg je zoiets:
-	// -1 -1 -1 -1 -1
-	// -1 -2 -3 -2 -1	(1e element is voorMiddenRij)
-	//  0  0  0  0  0	(1e element is beginMidden)
-	//  1  2  3  2  1	(1e element is eindMidden)
-	//  1  1  1  1  1	(1e element is eindNaMiddenRij)
+	 we nemen de width en dan kijken we hoe groot deze is.
+	 de rij rond de middelste rij geven we iets meer gewicht mee. (zie hierboven)
+	 bij 3 maken we de middelste waarde 2, dus 121
+	 bij 5 maken we de middelste waarde 3, dus 12321
+	 bij 7 maken we de middelste waarde 4, dus 1234321
+	 dus als de kernel groter is dan 3x3 krijg je zoiets:
+	 -1 -1 -1 -1 -1
+	 -1 -2 -3 -2 -1	(1e element is voorMiddenRij)
+	  0  0  0  0  0	(1e element is beginMidden)
+	  1  2  3  2  1	(1e element is eindMidden)
+	  1  1  1  1  1	(1e element is eindNaMiddenRij) */
 
 	int middenrij = height / 2;
 	int beginMidden = width * middenrij;
