@@ -5,7 +5,7 @@
 #include <math.h>
 #include <time.h>
 
-/* KNOWN COMBO's
+/* KNOWN COMBO's (apparently don't work anymore)
 Kern(5,5,PREWITT,1) result * 0.4 : female-2,
 Kern(5,5,PREWITT,1) result * 0.4 : male-1(shirt = face though)
 */
@@ -38,24 +38,20 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage, const IntensityImage & oldImage, const Kernel & kern) const{
 	int kernVerOff = kern.getHeight() / 2;
 	int kernHorOff = kern.getWidth() / 2;
-	//std::cout << "Kernel height divided: " << kernVerOff << '\n';
 
-	for (int y = 0; y < oldImage.getHeight() - kernVerOff; y++){
-		while (y < kernVerOff){
-			y++;
-		}
-		for (int x = 0; x < oldImage.getWidth() - kernHorOff; x++){
-			while (x < kernHorOff){
-				x++;
-			}
-			//Actual appliance
+	for (int y = 0; y < oldImage.getHeight(); y++){
+		for (int x = 0; x < oldImage.getWidth(); x++){
 			double result = 0;
 
-			//Checks the kernel in all directions
-			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, true);
-			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, false);
-			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, true);
-			result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, false);
+			if (y >= kernVerOff && y < oldImage.getHeight() - kernVerOff){
+				if (x >= kernHorOff && x < oldImage.getWidth() - kernHorOff){
+					//Checks the kernel in all directions
+					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, true);
+					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, true, false);
+					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, true);
+					result += kernelSum(kernHorOff, kernHorOff, oldImage, kern, x, y, false, false);
+				}
+			}
 
 			if (kern.getDivFactor() != 0){
 				result = result / kern.getDivFactor();
@@ -66,7 +62,6 @@ IntensityImage & StudentPreProcessing::KernelAppliance(IntensityImage& newImage,
 			if (nPixel > 255){ nPixel = 255; }
 
 			newImage.setPixel(x, y, nPixel);
-			//end Actual appliance
 		}
 	}
 	return newImage;
@@ -91,7 +86,7 @@ double StudentPreProcessing::kernelSum(int kernHorOff, int kernVerOff, const Int
 		}
 	}
 	if (result < 0){ result = 0; }
-	result = result * 0.4; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended.
+	result = result * 0.35; //Change this to change the output of each kernel 1 for 3x3, 0.4 for 5x5 recommended.
 	return result;
 }
 
